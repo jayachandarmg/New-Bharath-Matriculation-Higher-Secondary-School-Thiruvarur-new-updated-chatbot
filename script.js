@@ -13,7 +13,7 @@ const schoolWebsite = "🌍 Visit our website: https://newbharathschool.org/";
 const correspondent = "Brahadambal.N";
 const founder = "Nagarajan.G";
 const viceprincipal = "1. Kamala.R, 2. Vijayalakshmi.N, 3. Bhuvaneshwari.S";
-const extracurricular = "Yoga,Chess,Carrom,Robotics,Silambam,Scout,JRC,Abacusand more";
+const extracurricular = "Yoga,Chess,Carrom,Robotics,Silambam,Scout,JRC,Abacus and more";
 const numberofstudent = "Approximately 600 " ;
 
 
@@ -344,3 +344,4 @@ window.addEventListener("load", () => {
 document.getElementById('user-input').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') sendMessage();
 });
+
