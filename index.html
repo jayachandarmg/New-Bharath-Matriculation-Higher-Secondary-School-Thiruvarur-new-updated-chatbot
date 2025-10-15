@@ -4,12 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Bharath School Chatbot</title>
-
-  <!-- Link to your stylesheet -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- Optional: favicon (small browser tab icon) -->
-  <link rel="icon" type="image/png" href="images (1).png">
 </head>
 <body>
   <!-- Splash screen overlay -->
@@ -23,23 +18,13 @@
       <img src="images (1).png" alt="School Logo" class="logo">
       <span>NEW BHARATH MATRICULATION HIGHER SECONDARY SCHOOL, THIRUVARUR</span>
     </div>
-
-    <!-- Chat message area -->
     <div id="chat-box" class="chat-box"></div>
-
-    <!-- Input area -->
     <div class="chat-input">
-      <input 
-        type="text" 
-        id="user-input" 
-        placeholder="Type your question here..." 
-        autocomplete="off" 
-      >
-      <button id="send-btn" onclick="sendMessage()">Send</button>
+      <input type="text" id="user-input" placeholder="Type your question here...">
+      <button onclick="sendMessage()">Send</button>
     </div>
   </div>
 
-  <!-- JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
