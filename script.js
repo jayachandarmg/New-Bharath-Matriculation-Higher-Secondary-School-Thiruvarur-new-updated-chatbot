@@ -152,7 +152,6 @@ function makeBold(text) {
 function getBotReply(rawText) {
   const text = rawText.toLowerCase().trim();
 
-  // Greetings
   if (isGreeting(text)) {
     const greetings = [
       "👋 Hello! How can I help you?",
@@ -162,7 +161,6 @@ function getBotReply(rawText) {
     return makeBold(greetings[Math.floor(Math.random() * greetings.length)]);
   }
 
-  // Thank you replies
   if (/\b(thank you|thanks|thank u|thankuh|thankuu|thankyou)\b/i.test(text)) {
     const replies = [
       "😊 You're most welcome!",
@@ -173,17 +171,14 @@ function getBotReply(rawText) {
     return makeBold(replies[Math.floor(Math.random() * replies.length)]);
   }
 
-  // Help message
   if (text.includes("help") || text.includes("what can") || text.includes("options")) {
     return makeBold("💡 I can help with: Admissions, Fees, Timings, Groups, Toppers, Teachers, Facilities, Bus info, and Contact details.");
   }
 
-  // Admissions
   if (text.includes("admission") || text.includes("apply") || text.includes("join")) {
     return makeBold(`📚 Admission Info:<br>- ${admissionDocs.join("<br>- ")}<br><br>${schoolContact}`);
   }
 
-  // Fees
   if (text.includes("fee") || text.includes("fees") || text.includes("payment")) {
     return makeBold("💰 Fees per class:<br>" + Object.entries(fees).map(([cls, f]) => `Class ${cls}: ${f}`).join("<br>"));
   }
@@ -196,17 +191,14 @@ function getBotReply(rawText) {
     return makeBold(schoolContact);
   }
 
-  // Vice Principal reply first
   if (text.includes("vice principal") || text.includes("v.p")) {
     return makeBold(`👨‍💼 Vice Principals:<br>${viceprincipal}`);
   }
 
-  // Principal reply
   if (text.includes("principal")) {
     return makeBold(schoolPrincipal);
   }
 
-  // Other queries
   if (text.includes("classrooms") || text.includes("hall")) return makeBold(classrooms);
   if (text.includes("blocks") || text.includes("building")) return makeBold(schoolblocks);
   if (text.includes("school name") || text.includes("name of the school")) return makeBold(schoolName);
@@ -217,19 +209,14 @@ function getBotReply(rawText) {
   if (text.includes("sslc") || text.includes("10th")) return makeBold("🏆 Last year SSLC Toppers:<br>" + sslcToppers.join("<br>"));
   if (text.includes("hsc") || text.includes("12th")) return makeBold("🏆 Last year HSC Toppers:<br>" + hscToppers.join("<br>"));
 
-  // Teachers
   if (text.includes("teacher") || text.includes("staff")) {
     for (const [subject, list] of Object.entries(teachers)) {
       if (text.includes(subject)) {
         return makeBold(`👩‍🏫 ${subject.toUpperCase()} Teachers:<br>${list.join("<br>")}`);
       }
     }
-
     const foundTeacher = allTeachers.find(t => text.includes(t.split(" ")[0].toLowerCase()));
-    if (foundTeacher) {
-      return makeBold(`👩‍🏫 ${foundTeacher} is one of our respected staff members.`);
-    }
-
+    if (foundTeacher) return makeBold(`👩‍🏫 ${foundTeacher} is one of our respected staff members.`);
     return makeBold(`👩‍🏫 Teachers List:<br>
 Physics:<br>${teachers.physics.join("<br>")}<br><br>
 Chemistry:<br>${teachers.chemistry.join("<br>")}<br><br>
@@ -245,7 +232,6 @@ Automobile:<br>${teachers.automobile.join("<br>")}<br><br>
 EAS & CA:<br>${teachers.eas_ca.join("<br>")}`);
   }
 
-  // Facilities
   if (text.includes("facility") || text.includes("facilities")) {
     return makeBold(`🏫 School Facilities:<br>
 ⚽ Sports:<br>${sportsFacilities.join("<br>")}<br><br>
@@ -268,7 +254,6 @@ Biology lab:<br>${biologylab}<br><br>
   if (text.includes("break") || text.includes("lunch") || text.includes("assembly")) return makeBold(schoolBreaks);
   if (text.includes("website") || text.includes("link")) return makeBold(schoolWebsite);
 
-  // Default fallback
   return makeBold("🤔 Sorry, I didn’t understand. Try asking about teachers, admissions, fees, timings, or facilities.");
 }
 
@@ -279,19 +264,15 @@ function sendMessage() {
   if (!message) return;
 
   const chatBox = document.getElementById("chat-box");
-
-  // User message
   const userMsg = document.createElement("div");
   userMsg.classList.add("message", "user-message");
   userMsg.textContent = message;
   chatBox.appendChild(userMsg);
-  userMsg.style.animation = "fadeSlideIn 0.5s forwards";
 
   chatBox.scrollTop = chatBox.scrollHeight;
   input.value = "";
   input.focus();
 
-  // Bot typing effect
   const botMsg = document.createElement("div");
   botMsg.classList.add("message", "bot-message");
   botMsg.textContent = "🤖 Bot is typing...";
@@ -309,8 +290,13 @@ window.addEventListener("load", () => {
   const splash = document.getElementById("splash-screen");
   const chatContainer = document.getElementById("chat-container");
 
+  // ✅ Make sure chat is hidden initially
+  chatContainer.style.display = "none";
+
   setTimeout(() => {
     splash.classList.add("fade-out");
+
+    // ✅ Safety: Show chat after fade even on tablets
     setTimeout(() => {
       splash.style.display = "none";
       chatContainer.style.display = "flex";
@@ -326,11 +312,11 @@ window.addEventListener("load", () => {
       botMsg.innerHTML = makeBold(welcome[Math.floor(Math.random() * welcome.length)]);
       chatBox.appendChild(botMsg);
       chatBox.scrollTop = chatBox.scrollHeight;
-    }, 600);
+    }, 700);
   }, 1500);
 });
 
 // ---------- Send on Enter Key ----------
-document.getElementById('user-input').addEventListener('keydown', function(e) {
+document.getElementById('user-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') sendMessage();
 });
