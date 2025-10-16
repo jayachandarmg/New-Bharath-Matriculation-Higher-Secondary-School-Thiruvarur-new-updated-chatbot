@@ -214,7 +214,7 @@ function getBotReply(rawText) {
   if (text.includes("classrooms") || text.includes("hall")) return makeBold(classrooms);
   if (text.includes("blocks") || text.includes("building")) return makeBold(schoolblocks);
   if (text.includes("school name") || text.includes("name of the school")) return makeBold(schoolName);
-  if (text.includes("location") || text.includes("address")) return makeBold(schoolLocation);
+  if (text.includes("location") || text.includes("located") || text.includes("address")) return makeBold(schoolLocation);
   if (text.includes("security camera") || text.includes("cctv")) return makeBold(cctv);
   if (text.includes("medium") || text.includes("language")) return makeBold(schoolMedium);
   if (text.includes("11") && text.includes("group")) return makeBold("📖 11th Standard Groups:<br>" + groups11.join("<br>"));
@@ -344,4 +344,5 @@ window.addEventListener("load", () => {
 document.getElementById('user-input').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') sendMessage();
 });
+
 
