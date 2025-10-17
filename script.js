@@ -12,9 +12,9 @@ const schoolBreaks = "🍱 Lunch Break: 12:20 PM – 1:10 PM";
 const schoolWebsite = "🌍 Visit our website: https://newbharathschool.org/";
 const correspondent = "Mrs.N.Brahadambal";
 const founder = "Mr.G.Nagarajan";
-const viceprincipal = "1. Kamala.R, 2. Vijayalakshmi.N, 3. Bhuvaneshwari.S";
+const viceprincipal = "1. Mrs.R. Kamala, 2.Mrs.N.Vijayalakshmi, 3.Mrs.S.Bhuvaneshwari , 4.Mrs.S.Aruna";
 const extracurricular = "Yoga,Chess,Carrom,Robotics,Silambam,Scout,JRC,Abacus and more";
-const numberofstudent = "Approximately 600 " ;
+const numberofstudent = "Approximately 500 - 600" ;
 
 
 const schooluniform = [
@@ -344,6 +344,7 @@ window.addEventListener("load", () => {
 document.getElementById('user-input').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') sendMessage();
 });
+
 
 
 
